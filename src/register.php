@@ -36,6 +36,7 @@ function post_data(
     $result = curl_exec($crl);
 
     echo "result $result \n";
+    var_dump($result);
 
     // handle curl error
     if ($result === false) {
