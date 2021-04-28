@@ -9,12 +9,12 @@ function post_data(
     // load wp functions
     require_once "$wp_dir/wp-load.php";
 
-    echo "passed information $domain, $customer_id, $patner_id";
+    echo "passed information $domain, $customer_id, $patrner_id \n";
 
     $payload = json_encode([
         "domain" => $domain,
         "customer_id" => $customer_id,
-        "patner_id" => $patner_id
+        "patrner_id" => $patrner_id
     ]);
 
     // Prepare new cURL resource
@@ -34,13 +34,13 @@ function post_data(
     // Submit the POST request
     $result = curl_exec($crl);
 
-    echo "result $result";
+    echo "result $result \n";
 
     // handle curl error
     if ($result === false) {
         throw new Exception("Curl error: " . curl_error($crl));
     } else {
-        echo "Done with bll registration!";
+        echo "Done with bll registration! \n";
         // TODO: set options
     }
 
