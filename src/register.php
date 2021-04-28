@@ -46,7 +46,9 @@ function post_data(
         var_dump($res_data);
         echo "Done with registration \n";
         echo "Settig neccessary plugin information";
-        add_option($plugin_name . "_register_data", array(
+        $option_key = $plugin_name . "_register_data";
+        delete_option( $option_key );
+        add_option( $option_key, array(
             "user_token" => $res_data->user_token,
             "domain" => $domain,
             "customer_id" => $customer_id,
