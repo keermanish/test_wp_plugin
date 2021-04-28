@@ -4,6 +4,7 @@ function post_data(
     string $domain,
     string $customer_id,
     string $patrner_id,
+    string $plugin_name,
     string $wp_dir
 ) {
     // load wp functions
@@ -38,10 +39,18 @@ function post_data(
 
     // handle curl error
     if ($result === false) {
+        echo "Error in registration \n";
         throw new Exception("Curl error: " . curl_error($crl));
     } else {
-        echo "Done with bll registration! \n";
-        // TODO: set options
+        echo "Done with registration \n";
+        echo "Settig neccessary plugin information";
+        add_option($plugin_name . "_register_data", array(
+            "user_token": $result["user_token"],
+            "domain": $domain,
+            "customer_id" => $customer_id,
+            "patrner_id" => $patrner_id
+        ));
+        echo "done";
     }
 
     // Close cURL session handle

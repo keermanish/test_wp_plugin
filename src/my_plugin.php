@@ -30,4 +30,11 @@ if (!defined("WPINC")) {
  */
 define("MY_PLUGIN_VERSION", "1.0.0");
 
-echo "my_plugin is activated";
+function print_details()
+{
+    $register_data = get_option( "my_plugin_register_data" );
+    echo "my_plugin is activated $register_data['domain'] $register_data['user_token']";
+}
+
+
+add_action("plugins_loaded", "print_details");
