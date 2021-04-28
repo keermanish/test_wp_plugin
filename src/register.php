@@ -36,17 +36,18 @@ function post_data(
     $result = curl_exec($crl);
 
     echo "result $result \n";
-    var_dump($result);
 
     // handle curl error
     if ($result === false) {
         echo "Error in registration \n";
         throw new Exception("Curl error: " . curl_error($crl));
     } else {
+        $res_data = json_decode($result);
+        var_dump($res_data);
         echo "Done with registration \n";
         echo "Settig neccessary plugin information";
         add_option($plugin_name . "_register_data", array(
-            "user_token" => $result->user_token,
+            "user_token" => $res_data["user_token"],
             "domain" => $domain,
             "customer_id" => $customer_id,
             "patrner_id" => $patrner_id
