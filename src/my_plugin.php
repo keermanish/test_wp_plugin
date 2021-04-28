@@ -33,8 +33,11 @@ define("MY_PLUGIN_VERSION", "1.0.0");
 function print_details()
 {
     $register_data = get_option( "my_plugin_register_data" );
-    echo "my_plugin is activated $register_data['domain'] $register_data['user_token']";
+    echo "my_plugin is activated $register_data";
 }
 
+function init() {
+    add_action("plugins_loaded", "print_details");
+}
 
-add_action("plugins_loaded", "print_details");
+init();
